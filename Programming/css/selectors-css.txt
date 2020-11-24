@@ -1,0 +1,101 @@
+CSS Selectors
+
+Universal selector (*)
+
+Selects everything except before and after pseudo elements.for eg
+
+* , *::before, *::after {
+box-sizing: border-box;
+margin-top: 10px;
+}
+
+This is a block that will be written at the start of css stylesheet for overriding the above default properties for all the css elements
+
+Children selectors
+
+div p {
+color: red;
+}
+
+the block selects all the p inside the div block even the elements which are grandchildren to the div.
+
+div > p{
+color: red
+}
+
+the block will only select the p elements that are direct children to the div. If there is a nested div and have P element inside, the above selector wont select the p element inside it.
+
+Adjacent Selectors
+
+-Adjacent selectors ( div + p) Selects the adjacent selectors for p ie, it checks for divs before p's
+
+for eg: 
+
+<div class="adjacent-siblings">
+<p class="box"></p>
+<p class="box"></p>
+<a>hello</a>
+<p class="box"></p>
+<p class="box"></p>
+</div>
+
+.adjacent-siblings .box + .box {
+background-color: red;
+}
+
+this will give red color to all the boxes except the first one as it does not have an element with .box class before. In case where the a is added in the middle, the box after a wont be selected red as it does not have an adjacent element with .box class before it.
+
+- General siblings
+
+General selectors ( div ~ p) Similar to adjacent selectors ,this selects the adjacent selectors for p ie, it checks for divs before p's but the difference is when the a tag comes in.  The box after the a will be selected red as it checks for any element before it with .box class. for eg:
+
+<div class="general-siblings">
+<p class="box"></p>
+<p class="box"></p>
+<a>hello</a>
+<p class="box"></p>
+<p class="box"></p>
+</div>
+
+.general-siblings .box ~ .box {
+background-color: red;
+} 
+All the elements with .box will be red .
+
+Attribute selectors
+
+Selects elements using attributes
+   ================================= */
+
+// Selects all the a elements with target attribute and give red color
+a[target]{
+  color: red;
+}
+
+// Selects all the a elements with href https://www.google.ca  and give greencolor
+a[href="https://www.google.ca"]{
+  color:green;
+}
+
+// Selects all the a elements with class that starts with link and look for - separated values  and give blue color
+
+a[class|="link"]{
+  color:blue;
+}
+
+// Selects all the a elements with class that starts with li   and give brown color
+
+a[class^="li"]{
+  color: brown;
+}
+
+// Selects all the a elements with class that ends with ve   and give cyan color
+a[class$="ve"]{
+  color: cyan;
+}
+
+
+// Selects all the a elements with class that contains "k-"   and give black color
+a[class*="k-"] {
+  color: black;
+}
